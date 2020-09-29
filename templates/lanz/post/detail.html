@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    {% extends 'lanz/base.html' %}
+    <title>{% block title %} {{ post.title }}{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+    <fieldset style="padding-right:0" class="dashboard">
+    <h1>{{ post.title }}</h1>
+    <p class="date">
+    Created {{ post.publish}} by {{ post.author }}
+    </p>
+    </fieldset>
+    <p>
+    <a href="{% url "lanz:post_share" post.id %}">Share post</a>
+    </p>
+    {% with comments.count as total_comments %}
+        <h2>
+        {{ total_comments }} comment{{ total_comments|pluralize }}
+        </h2>
+    {% endwith %}
+        {% for comment in comments %}
+            <div class="comment">
+                <p class="info">
+                Comment {{ forloop.counter }} by {{ comment.name }}
+                {{ comment.created }}
+                </p>
+                {{ comment.body|linebreaks }}
+            </div>
+        {% empty %}
+            <p>No reviews yet.</p>
+        {% endfor %}
+    {% if new_comment %}
+        <h2>Thanks for your review.</h2>
+    {% else %}
+        <h2>Add a new comment</h2>
+        <form method="post">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Add comment"></p>
+        </form>
+    {% endif %}
+{% endblock %}
+
+</body>
+</html>

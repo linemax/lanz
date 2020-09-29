@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% extends 'lanz/base.html' %}
+    <title>{% block title %} Predz {% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+        {% include 'lanz/post/paging.html' with page=page_obj %}
+        {% include 'lanz/post/paging.html' with page=posts %}
+        <h1>Predz</h1>
+        {% for post in posts %}
+        <h2>
+        <a href="{{ post.get_absolute_url }}"{% load static %}
+           >{{ post.title }}</a>
+        </h2>
+        <h2 >
+        <p class="date">
+        Published {{ post.publish }}
+        </p>
+        {{ post.body|truncatewords:30|linebreaks }}
+        </h2>
+        {% endfor %}
+        <p class="tags">Tags: {{ post.tags.all|join:", " }}</p>
+    {% endblock %}
+
+</body>
+</html>

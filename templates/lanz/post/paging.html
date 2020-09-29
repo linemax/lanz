@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'lanz/base.html' %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div class="pagination">
+    <span class="step-links">
+        {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number}}">Previous</a>
+        {% endif %}
+    </span>
+    <span class="current">
+        Page {{ page.number }} of {{ page.pager.num_pages }}
+    </span>
+    <span class="current-app">
+        {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">Next</a>
+        {% endif %}
+    </span>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'css/lanz.css'%}" rel="stylesheet">
+    <style type="text/css">
+        body {
+            background-image: url('../../lanz/static/css/stat/image/robby.jpg');
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div id="sidebar">
+        <h2>Powerful predz</h2>
+        <p>These are for high stakes.</p>
+        <ul id="nav-sidebar">
+            <li>{{ ur1 }}</li>
+            <li>{{ ur2 }}</li>
+            <li>{{ ur3 }}</li>
+            <li>{{ ur4 }}</li>
+        </ul>
+    </div>
+</body>
+</html>

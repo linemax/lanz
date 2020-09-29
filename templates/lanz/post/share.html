@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% extends 'lanz/base.html' %}
+    <title>{% block title %}Share post{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+    {% if sent %}
+        <h1>
+        Email successfully sent
+        </h1>
+        <p>
+        "{{ post.title }}"  was sent successfully to {{ form.cleaned_data.to}}
+        </p>
+     {% else %}
+        <h1>Share "{{ post.title }}" by e_--mail
+        </h1>
+        <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="Send Mail">
+        </form>
+    {% endif %}
+{% endblock %}
+
+</body>
+</html>
