@@ -1,0 +1,2 @@
+# lanz
+django project
